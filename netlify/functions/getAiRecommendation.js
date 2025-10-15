@@ -1,4 +1,6 @@
-exports.handler = async function(event, context) {
+const fetch = require('node-fetch');
+
+exports.handler = async (event) => {
     if (event.httpMethod !== 'POST') {
         return { statusCode: 405, body: 'Method Not Allowed' };
     }
@@ -6,56 +8,59 @@ exports.handler = async function(event, context) {
     try {
         const { userQuery } = JSON.parse(event.body);
         const apiKey = process.env.GEMINI_API_KEY;
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
 
-        if (!apiKey) {
-            throw new Error('API key is not set');
-        }
+        const systemPrompt = `คุณคือผู้เชี่ยวชาญการจัดสเปคคอมพิวเตอร์ในไทยที่รู้ข้อมูลล่าสุด (ต.ค. 2025) ภารกิจของคุณคือสร้างคำตอบที่สมบูรณ์แบบในครั้งเดียว
+**กฎสำคัญ:**
+1.  **วิเคราะห์คำขอ:** อ่านคำขอของผู้ใช้ (คณะ, โปรแกรม, งบ) ให้ละเอียด
+2.  **จัดสเปค:**
+    * แนะนำสเปค PC ที่เหมาะสมที่สุด โดยอ้างอิงชิ้นส่วนที่มีอยู่จริงเท่านั้น (เช่น CPU Intel Core Ultra, GPU NVIDIA RTX 50 series)
+    * จัดรูปแบบแต่ละชิ้นส่วนให้สวยงาม:
+        * ขึ้นต้นด้วย \`###\` ตามด้วยเลขและชื่อ เช่น \`### 1. CPU: Intel Core Ultra 5\`
+        * บรรทัดถัดไป อธิบายเหตุผล **แบบสั้นๆ กระชับที่สุด (ไม่เกิน 1-2 ประโยค)** ขึ้นต้นด้วย \`**เหตุผล:**\`
+    * มีส่วนสรุปภาพรวมโดยใช้หัวข้อ \`## สรุปภาพรวม\`
+3.  **ค้นหาและสรุปราคา (สำคัญมาก):**
+    * หลังจากจัดสเปคเสร็จ **ให้ใช้ Google Search ทันที** เพื่อค้นหาราคาโดยประมาณของชิ้นส่วน **ทุกชิ้น** จากร้านค้าในไทย (เช่น JIB, Advice)
+    * สร้างตารางราคาในรูปแบบ Markdown โดยใช้หัวข้อ \`## ตารางราคาโดยประมาณ\`
+    * ตารางต้องมีคอลัมน์ 'ส่วนประกอบ', 'สเปค', และ 'ราคาประมาณ (บาท)'
+    * **ต้องมีแถวสุดท้ายสำหรับ 'ราคารวมโดยประมาณ'** โดยคำนวณจากผลรวมของราคาที่หาได้
+4.  **ห้ามมั่ว:** หากหาราคาไม่ได้จริงๆ ให้ใส่ '-' แต่ต้องพยายามหาให้ได้มากที่สุด
+5.  **ภาษา:** ไทย, สุภาพ, เข้าใจง่าย`;
         
-        const systemPrompt = `คุณคือผู้เชี่ยวชาญการจัดสเปคคอมพิวเตอร์ในประเทศไทย ที่มีความรู้ล่าสุด ณ เดือนตุลาคม 2025 ภารกิจของคุณคือให้คำแนะนำการจัดสเปค PC ที่ถูกต้องและเหมาะสมที่สุดสำหรับนักศึกษา
-- **ความแม่นยำสำคัญที่สุด:** ต้องอ้างอิงเฉพาะชิ้นส่วนที่มีอยู่จริงในตลาด ห้ามสร้างชื่อรุ่นที่ไม่มีอยู่จริง เช่น Intel ได้เปลี่ยนชื่อ CPU เป็น "Core Ultra 5/7/9" แล้ว ไม่ใช่ "Core i5-15xxx"
-- **ตัวอย่างชิ้นส่วนที่ควรอ้างอิง (ปลายปี 2025):**
-  - **CPU:** Intel Core Ultra 5 (series 1/2), Core Ultra 7 (series 1/2), AMD Ryzen 5 (7xxx/8xxx series), Ryzen 7 (7xxx/8xxx series)
-  - **GPU:** NVIDIA GeForce RTX 50 series (เช่น RTX 5050, 5060) เป็นตัวเลือกหลัก หากงบจำกัดและจำเป็นต้องแนะนำรุ่นเก่ากว่า (เช่น RTX 40 series) ต้องระบุเหตุผลที่ชัดเจนว่า 'เพื่อคุมบประมาณแต่ยังคงประสิทธิภาพที่ดี'
-  - **RAM:** DDR5 เป็นมาตรฐานหลัก (เช่น 16GB/32GB DDR5 5600MHz)
-  - **SSD:** NVMe PCIe 4.0 เป็นอย่างน้อย
-- อธิบายเหตุผลสั้นๆ แต่ชัดเจนในการเลือกแต่ละชิ้นส่วน
-- คำนึงถึงงบประมาณที่ให้มา และพยายามจัดให้อยู่ในงบหรือใกล้เคียงที่สุด
-- สรุปภาพรวมว่าสเปคนี้เหมาะกับการใช้งานที่ระบุไว้อย่างไร
-- ตอบเป็นภาษาไทยที่สุภาพและเข้าใจง่าย
-- **รูปแบบการตอบ (สำคัญมาก):** เริ่มแต่ละชิ้นส่วนด้วย '### [หมายเลข]. [ชื่อชิ้นส่วน]: [สเปค]' และขึ้นบรรทัดใหม่ตามด้วย '**เหตุผล:** [คำอธิบาย]' สำหรับส่วนสรุปให้ใช้หัวข้อ '## สรุปภาพรวม'`;
-
         const payload = {
             contents: [{ parts: [{ text: userQuery }] }],
-            systemInstruction: { parts: [{ text: systemPrompt }] },
+            tools: [{ "google_search": {} }],
+            systemInstruction: {
+                parts: [{ text: systemPrompt }]
+            },
         };
-
-        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
 
         const response = await fetch(apiUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload),
+            body: JSON.stringify(payload)
         });
 
         if (!response.ok) {
             const errorBody = await response.text();
-            console.error('Gemini API Error:', errorBody);
-            throw new Error(`Gemini API failed with status: ${response.status}`);
+            console.error('Gemini API error:', errorBody);
+            return { statusCode: response.status, body: JSON.stringify({ error: `Gemini API error: ${response.statusText}`, details: errorBody }) };
         }
 
         const result = await response.json();
-        const text = result.candidates?.[0]?.content?.parts?.[0]?.text || "AI ไม่สามารถให้คำแนะนำได้ในขณะนี้";
+        const text = result.candidates?.[0]?.content?.parts?.[0]?.text || 'AI ไม่สามารถให้คำแนะนำได้ในขณะนี้';
 
         return {
             statusCode: 200,
-            body: JSON.stringify({ text }),
+            body: JSON.stringify({ text })
         };
 
     } catch (error) {
-        console.error('Error in Netlify function:', error);
+        console.error('Function error:', error);
         return {
             statusCode: 500,
-            body: JSON.stringify({ error: error.message }),
+            body: JSON.stringify({ error: 'Could not process your request', details: error.message })
         };
     }
 };
+
