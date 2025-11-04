@@ -72,10 +72,9 @@
                 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex space-x-6 items-center">
-                    <a href="#general-info" class="nav-link text-gray-300 font-medium">ข้อมูลทั่วไป</a>
                     <a href="#gemini-advisor" class="nav-link text-gray-300 font-medium">AI แนะนำสเปค</a>
+                    <a href="#general-info" class="nav-link text-gray-300 font-medium">ตัวอย่างสเปค</a>
                     <a href="#knowledge" class="nav-link text-gray-300 font-medium">เกร็ดความรู้</a>
-                    <a href="#news" class="nav-link text-gray-300 font-medium">ข่าวสาร</a>
                     <a href="#ebook" class="nav-link text-gray-300 font-medium">E-Book</a>
                     <a href="#contact" class="nav-link text-gray-300 font-medium">ติดต่อเรา</a>
                 </div>
@@ -90,10 +89,9 @@
         </div>
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="md:hidden hidden bg-gray-900">
-            <a href="#general-info" class="block py-2 px-4 text-sm hover:bg-gray-800">ข้อมูลทั่วไป</a>
             <a href="#gemini-advisor" class="block py-2 px-4 text-sm hover:bg-gray-800">AI แนะนำสเปค</a>
+            <a href="#general-info" class="block py-2 px-4 text-sm hover:bg-gray-800">ตัวอย่างสเปค</a>
             <a href="#knowledge" class="block py-2 px-4 text-sm hover:bg-gray-800">เกร็ดความรู้</a>
-            <a href="#news" class="block py-2 px-4 text-sm hover:bg-gray-800">ข่าวสาร</a>
             <a href="#ebook" class="block py-2 px-4 text-sm hover:bg-gray-800">E-Book</a>
             <a href="#contact" class="block py-2 px-4 text-sm hover:bg-gray-800">ติดต่อเรา</a>
         </div>
@@ -109,104 +107,127 @@
             <p class="text-lg text-gray-400">เลือกคอมพิวเตอร์ที่ใช่ ให้การเรียนเป็นเรื่องง่าย</p>
         </header>
 
+        <!-- Gemini AI Advisor Section -->
+        <section id="gemini-advisor" class="my-16 py-16" data-aos="zoom-in">
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-12 items-center">
+                
+                <!-- AI Image -->
+                <div class="md:col-span-2" data-aos="fade-right">
+                    <!-- นี่คือจุดที่เธอจะใส่รูปเองนะจ๊ะ! -->
+                    <img id="ai-builder-img-display" src="./images/ai-builder-image.jpg" alt="AI PC Builder Illustration" class="rounded-lg shadow-2xl w-full h-auto object-cover aspect-square">
+                    <!-- 
+                        คำแนะนำจากเค้า:
+                        1. สร้างโฟลเดอร์ 'images' ในโปรเจกต์ของเธอ
+                        2. เอารูปสวยๆ ไปใส่ (เช่น 'ai-pic.png')
+                        3. แก้โค้ดด้านบน src="./images/ai-builder-image.jpg" เป็น src="./images/ai-pic.png"
+                    -->
+                </div>
+
+                <!-- AI Card -->
+                <div class="md:col-span-3" data-aos="fade-left">
+                    <h2 class="text-3xl font-bold mb-4 gradient-text">✨ AI แนะนำสเปคและราคา</h2>
+                    <p class="text-gray-400 mb-6">จุดเด่นของเรา! ไม่แน่ใจ? บอกความต้องการและงบประมาณ แล้ว AI จะช่วยแนะนำสเปคพร้อมราคาโดยประมาณให้เลย!</p>
+
+                    <div class="card p-6 md:p-8 rounded-lg">
+                        <div class="w-full">
+                            <label for="user-prompt" class="block text-left text-lg font-medium text-gray-300 mb-2">บอกเราเกี่ยวกับคณะ, โปรแกรมที่ใช้, และงบประมาณของคุณ:</label>
+                            <textarea id="user-prompt" rows="5" class="w-full p-3 bg-gray-900 border border-gray-600 rounded-lg text-gray-200 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500" placeholder="เช่น: เรียนสถาปัตย์ ปี 2 ใช้โปรแกรม AutoCAD, SketchUp, Lumion เป็นหลัก มีเล่นเกมบ้าง งบประมาณ 40,000 บาทครับ"></textarea>
+                            <button id="get-recommendation-btn" class="gemini-button mt-4 w-full text-white font-bold py-3 px-4 rounded-lg text-lg">
+                                ✨ ขอคำแนะนำเลย!
+                            </button>
+                        </div>
+                        <div id="ai-result-container" class="mt-6 text-left hidden">
+                            <!-- Loading State -->
+                            <div id="loading-container" class="text-center hidden">
+                                <div class="spinner mx-auto"></div>
+                                <p class="text-gray-400 text-sm mt-4">น้อง AI กำลังใช้ความคิดสักครู่นะคะ...<br>ความเร็วในการตอบขึ้นอยู่กับปริมาณผู้ใช้งานในขณะนี้ ถ้าช่วงไหนคนใช้เยอะอาจจะช้าหน่อยน้า</p>
+                            </div>
+
+                            <!-- Result Display -->
+                            <div id="ai-result" class="space-y-4"></div>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-4 px-2">
+                        <span class="font-bold">ข้อควรระวัง:</span> คำแนะนำจาก AI สร้างขึ้นจากข้อมูลล่าสุด แต่อาจมีความคลาดเคลื่อนได้ โปรดตรวจสอบข้อมูลจากผู้เชี่ยวชาญหรือร้านค้าอีกครั้งเพื่อความถูกต้อง
+                    </p>
+                </div>
+            </div>
+        </section>
+
         <!-- General Info Section Anchor -->
         <div id="general-info" class="pt-16 -mt-16"></div> 
         
-        <!-- Introduction -->
-        <section class="mb-12 text-center max-w-3xl mx-auto" data-aos="fade-up">
-            <h2 class="text-2xl font-bold text-cyan-400 mb-4">ทำไมการเลือกคอมฯ ให้เหมาะกับคณะถึงสำคัญ?</h2>
-            <p class="text-gray-300">
-                คอมพิวเตอร์เป็นเครื่องมือสำคัญสำหรับนักศึกษาในปัจจุบัน ตั้งแต่การทำรายงาน ค้นคว้าข้อมูล ไปจนถึงการใช้โปรแกรมเฉพาะทางตามสาขาที่เรียน การเลือกสเปคที่เหมาะสมไม่เพียงแต่จะช่วยให้การเรียนราบรื่น แต่ยังเป็นการลงทุนที่คุ้มค่าในระยะยาวตลอดช่วงชีวิตมหาวิทยาลัยอีกด้วย
-            </p>
-        </section>
-
         <!-- PC Recommendations Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            
-            <div class="card rounded-lg p-6 flex flex-col" data-aos="fade-up" data-aos-delay="100">
-                <h3 class="text-xl md:text-2xl font-bold text-white mb-3">💻 ใช้งานทั่วไปและสายภาษา</h3>
-                <p class="text-gray-400 mb-4 flex-grow">สำหรับทำรายงาน, ค้นคว้า, เรียนออนไลน์, และดูหนังฟังเพลง เหมาะกับนักศึกษาส่วนใหญ่ที่ไม่ได้ใช้โปรแกรมหนัก</p>
-                <div class="mb-4 flex items-center justify-center rounded-full bg-cyan-900/50 px-3 py-1.5 text-sm font-medium text-cyan-300">
-                    <span class="mr-2">💰</span>
-                    <span>เน้นความคุ้มค่าและสมดุล</span>
-                </div>
-                <ul class="space-y-3 text-gray-300">
-                    <li><span class="font-semibold text-cyan-400">ซีพียู (CPU):</span> Intel Core i3 / AMD Ryzen 3</li>
-                    <li><span class="font-semibold text-cyan-400">การ์ดจอ (GPU):</span> ออนบอร์ด (iGPU) เพียงพอ</li>
-                    <li><span class="font-semibold text-cyan-400">แรม (RAM):</span> 16GB DDR4</li>
-                    <li><span class="font-semibold text-cyan-400">ที่เก็บข้อมูล:</span> 512GB SSD (NVMe)</li>
-                </ul>
-                <div class="mt-6 pt-4 border-t border-gray-700 text-center">
-                    <p class="text-lg font-semibold text-white">งบประมาณ: <span class="text-violet-400">12,000 - 18,000 บาท</span></p>
-                </div>
-            </div>
-
-            <div class="card rounded-lg p-6 flex flex-col" data-aos="fade-up" data-aos-delay="200">
-                <h3 class="text-xl md:text-2xl font-bold text-white mb-3">🔧 โปรแกรมเมอร์และวิศวะ</h3>
-                <p class="text-gray-400 mb-4 flex-grow">สำหรับรันโค้ด, คอมไพล์โปรแกรม, ใช้โปรแกรมจำลอง และทำงานหลายอย่างพร้อมกันได้อย่างลื่นไหล</p>
-                <div class="mb-4 flex items-center justify-center rounded-full bg-cyan-900/50 px-3 py-1.5 text-sm font-medium text-cyan-300">
-                    <span class="mr-2">🧠</span>
-                    <span>เน้นพลังประมวลผล CPU</span>
-                </div>
-                <ul class="space-y-3 text-gray-300">
-                    <li><span class="font-semibold text-cyan-400">ซีพียู (CPU):</span> Intel Core Ultra 5 / AMD Ryzen 5</li>
-                    <li><span class="font-semibold text-cyan-400">การ์ดจอ (GPU):</span> NVIDIA RTX 4050 / RTX 5050</li>
-                    <li><span class="font-semibold text-cyan-400">แรม (RAM):</span> 16GB DDR5</li>
-                    <li><span class="font-semibold text-cyan-400">ที่เก็บข้อมูล:</span> 1TB SSD (NVMe)</li>
-                </ul>
-                <div class="mt-6 pt-4 border-t border-gray-700 text-center">
-                    <p class="text-lg font-semibold text-white">งบประมาณ: <span class="text-violet-400">25,000 - 35,000 บาท</span></p>
-                </div>
-            </div>
-
-            <div class="card rounded-lg p-6 flex flex-col" data-aos="fade-up" data-aos-delay="300">
-                <h3 class="text-xl md:text-2xl font-bold text-white mb-3">🎨 กราฟิก, สื่อ และออกแบบ</h3>
-                <p class="text-gray-400 mb-4 flex-grow">สำหรับงานตัดต่อวิดีโอ, ออกแบบ 3D, ปั้นโมเดล และงานกราฟิกความละเอียดสูงที่ต้องการพลังประมวลผลสูง</p>
-                <div class="mb-4 flex items-center justify-center rounded-full bg-cyan-900/50 px-3 py-1.5 text-sm font-medium text-cyan-300">
-                    <span class="mr-2">🎨</span>
-                    <span>เน้นพลังการ์ดจอ (GPU) และ RAM</span>
-                </div>
-                <ul class="space-y-3 text-gray-300">
-                    <li><span class="font-semibold text-cyan-400">ซีพียู (CPU):</span> Intel Core Ultra 7 / AMD Ryzen 7</li>
-                    <li><span class="font-semibold text-cyan-400">การ์ดจอ (GPU):</span> NVIDIA RTX 5060 ขึ้นไป</li>
-                    <li><span class="font-semibold text-cyan-400">แรม (RAM):</span> 32GB DDR5</li>
-                    <li><span class="font-semibold text-cyan-400">ที่เก็บข้อมูล:</span> 1TB SSD (NVMe Gen4) ขึ้นไป</li>
-                </ul>
-                <div class="mt-6 pt-4 border-t border-gray-700 text-center">
-                    <p class="text-lg font-semibold text-white">งบประมาณ: <span class="text-violet-400">40,000+ บาท</span></p>
-                </div>
-            </div>
-
-        </div>
-        
-        <!-- Gemini AI Advisor Section -->
-        <section id="gemini-advisor" class="my-16 py-16" data-aos="zoom-in">
-            <div class="text-center max-w-3xl mx-auto">
-                <h2 class="text-3xl font-bold mb-4 gradient-text">✨ AI แนะนำสเปคและราคา</h2>
-                <p class="text-gray-400 mb-6">ไม่แน่ใจว่าสเปคไหนเหมาะกับคุณ? บอกความต้องการและงบประมาณ แล้ว AI จะช่วยแนะนำสเปคพร้อมราคาโดยประมาณให้เลย!</p>
-
-                <div class="card p-6 md:p-8 rounded-lg">
-                    <div class="w-full">
-                        <label for="user-prompt" class="block text-left text-lg font-medium text-gray-300 mb-2">บอกเราเกี่ยวกับคณะ, โปรแกรมที่ใช้, และงบประมาณของคุณ:</label>
-                        <textarea id="user-prompt" rows="5" class="w-full p-3 bg-gray-900 border border-gray-600 rounded-lg text-gray-200 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500" placeholder="เช่น: เรียนสถาปัตย์ ปี 2 ใช้โปรแกรม AutoCAD, SketchUp, Lumion เป็นหลัก มีเล่นเกมบ้าง งบประมาณ 40,000 บาทครับ"></textarea>
-                        <button id="get-recommendation-btn" class="gemini-button mt-4 w-full text-white font-bold py-3 px-4 rounded-lg text-lg">
-                            ✨ ขอคำแนะนำเลย!
-                        </button>
-                    </div>
-                    <div id="ai-result-container" class="mt-6 text-left hidden">
-                        <!-- Loading State -->
-                        <div id="loading-container" class="text-center hidden">
-                            <div class="spinner mx-auto"></div>
-                            <p class="text-gray-400 text-sm mt-4">น้อง AI กำลังใช้ความคิดสักครู่นะคะ...<br>ความเร็วในการตอบขึ้นอยู่กับปริมาณผู้ใช้งานในขณะนี้ ถ้าช่วงไหนคนใช้เยอะอาจจะช้าหน่อยน้า</p>
+        <section class="my-16 py-16">
+            <h2 class="text-3xl font-bold text-center mb-8 gradient-text" data-aos="fade-up">ตัวอย่างสเปคทั่วไป</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                
+                <div class="card rounded-lg flex flex-col overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                    <!-- จุดที่ 2 ให้เธอใส่รูปสำหรับ 'สายภาษา' จ้ะ -->
+                    <img src="./images/spec-general.jpg" alt="General Use PC" class="w-full h-48 object-cover">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl md:text-2xl font-bold text-white mb-3">💻 ใช้งานทั่วไปและสายภาษา</h3>
+                        <p class="text-gray-400 mb-4 flex-grow">สำหรับทำรายงาน, ค้นคว้า, เรียนออนไลน์, และดูหนังฟังเพลง เหมาะกับนักศึกษาส่วนใหญ่ที่ไม่ได้ใช้โปรแกรมหนัก</p>
+                        <div class="mb-4 flex items-center justify-center rounded-full bg-cyan-900/50 px-3 py-1.5 text-sm font-medium text-cyan-300">
+                            <span class="mr-2">💰</span>
+                            <span>เน้นความคุ้มค่าและสมดุล</span>
                         </div>
-
-                        <!-- Result Display -->
-                        <div id="ai-result" class="space-y-4"></div>
+                        <ul class="space-y-3 text-gray-300">
+                            <li><span class="font-semibold text-cyan-400">ซีพียู (CPU):</span> Intel Core i3 / AMD Ryzen 3</li>
+                            <li><span class="font-semibold text-cyan-400">การ์ดจอ (GPU):</span> ออนบอร์ด (iGPU) เพียงพอ</li>
+                            <li><span class="font-semibold text-cyan-400">แรม (RAM):</span> 16GB DDR4</li>
+                            <li><span class="font-semibold text-cyan-400">ที่เก็บข้อมูล:</span> 512GB SSD (NVMe)</li>
+                        </ul>
+                        <div class="mt-6 pt-4 border-t border-gray-700 text-center">
+                            <p class="text-lg font-semibold text-white">งบประมาณ: <span class="text-violet-400">12,000 - 18,000 บาท</span></p>
+                        </div>
                     </div>
                 </div>
-                <p class="text-xs text-gray-500 mt-4 px-2">
-                    <span class="font-bold">ข้อควรระวัง:</span> คำแนะนำจาก AI สร้างขึ้นจากข้อมูลล่าสุด แต่อาจมีความคลาดเคลื่อนได้ โปรดตรวจสอบข้อมูลจากผู้เชี่ยวชาญหรือร้านค้าอีกครั้งเพื่อความถูกต้อง
-                </p>
+
+                <div class="card rounded-lg flex flex-col overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                    <!-- จุดที่ 3 ให้เธอใส่รูปสำหรับ 'วิศวะ' จ้ะ -->
+                    <img src="./images/spec-programming.jpg" alt="Programming PC" class="w-full h-48 object-cover">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl md:text-2xl font-bold text-white mb-3">🔧 โปรแกรมเมอร์และวิศวะ</h3>
+                        <p class="text-gray-400 mb-4 flex-grow">สำหรับรันโค้ด, คอมไพล์โปรแกรม, ใช้โปรแกรมจำลอง และทำงานหลายอย่างพร้อมกันได้อย่างลื่นไหล</p>
+                        <div class="mb-4 flex items-center justify-center rounded-full bg-cyan-900/50 px-3 py-1.5 text-sm font-medium text-cyan-300">
+                            <span class="mr-2">🧠</span>
+                            <span>เน้นพลังประมวลผล CPU</span>
+                        </div>
+                        <ul class="space-y-3 text-gray-300">
+                            <li><span class="font-semibold text-cyan-400">ซีพียู (CPU):</span> Intel Core Ultra 5 / AMD Ryzen 5</li>
+                            <li><span class="font-semibold text-cyan-400">การ์ดจอ (GPU):</span> NVIDIA RTX 4050 / RTX 5050</li>
+                            <li><span class="font-semibold text-cyan-400">แรม (RAM):</span> 16GB DDR5</li>
+                            <li><span class="font-semibold text-cyan-400">ที่เก็บข้อมูล:</span> 1TB SSD (NVMe)</li>
+                        </ul>
+                        <div class="mt-6 pt-4 border-t border-gray-700 text-center">
+                            <p class="text-lg font-semibold text-white">งบประมาณ: <span class="text-violet-400">25,000 - 35,000 บาท</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card rounded-lg flex flex-col overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                    <!-- จุดที่ 4 ให้เธอใส่รูปสำหรับ 'กราฟิก' จ้ะ -->
+                    <img src="./images/spec-graphics.jpg" alt="Graphics PC" class="w-full h-48 object-cover">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl md:text-2xl font-bold text-white mb-3">🎨 กราฟิก, สื่อ และออกแบบ</h3>
+                        <p class="text-gray-400 mb-4 flex-grow">สำหรับงานตัดต่อวิดีโอ, ออกแบบ 3D, ปั้นโมเดล และงานกราฟิกความละเอียดสูงที่ต้องการพลังประมวลผลสูง</p>
+                        <div class="mb-4 flex items-center justify-center rounded-full bg-cyan-900/50 px-3 py-1.5 text-sm font-medium text-cyan-300">
+                            <span class="mr-2">🎨</span>
+                            <span>เน้นพลังการ์ดจอ (GPU) และ RAM</span>
+                        </div>
+                        <ul class="space-y-3 text-gray-300">
+                            <li><span class="font-semibold text-cyan-400">ซีพียู (CPU):</span> Intel Core Ultra 7 / AMD Ryzen 7</li>
+                            <li><span class="font-semibold text-cyan-400">การ์ดจอ (GPU):</span> NVIDIA RTX 5060 ขึ้นไป</li>
+                            <li><span class="font-semibold text-cyan-400">แรม (RAM):</span> 32GB DDR5</li>
+                            <li><span class="font-semibold text-cyan-400">ที่เก็บข้อมูล:</span> 1TB SSD (NVMe Gen4) ขึ้นไป</li>
+                        </ul>
+                        <div class="mt-6 pt-4 border-t border-gray-700 text-center">
+                            <p class="text-lg font-semibold text-white">งบประมาณ: <span class="text-violet-400">40,000+ บาท</span></p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -235,6 +256,7 @@
                         <div>
                             <h3 class="text-lg md:text-xl font-bold text-white">จัดโต๊ะคอมให้ถูกหลัก</h3>
                             <p class="text-gray-400">การจัดวางจอและเก้าอี้ให้เหมาะสม (Ergonomics) จะช่วยลดอาการปวดเมื่อยจากการนั่งทำงานนานๆ</p>
+
                         </div>
                     </div>
                 </div>
@@ -264,43 +286,6 @@
                 </div>
             </div>
         </section>
-        
-        <!-- News & Articles Section -->
-        <section id="news" class="my-16 py-16">
-            <h2 class="text-3xl font-bold text-center mb-8 gradient-text" data-aos="fade-up">ข่าวสารและบทความ</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Article 1 -->
-                <div class="card overflow-hidden" data-aos="fade-up" data-aos-delay="100">
-                    <img src="https://placehold.co/600x400/1f2937/22d3ee?text=Review" alt="Article Image" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <span class="text-xs font-semibold text-cyan-400">รีวิว</span>
-                        <h3 class="text-lg md:text-xl font-bold text-white mt-2 mb-3">รีวิว RTX 5070: การ์ดจอตัวจบสำหรับนักศึกษาที่งบถึง</h3>
-                        <p class="text-gray-400 text-sm">ทดสอบประสิทธิภาพการ์ดจอรุ่นใหม่ล่าสุดกับการใช้งานจริง ทั้งเล่นเกมและทำงานกราฟิก จะคุ้มค่าแค่ไหน?</p>
-                        <a href="#" class="inline-block mt-4 text-cyan-400 font-semibold hover:text-cyan-300">อ่านต่อ &rarr;</a>
-                    </div>
-                </div>
-                <!-- Article 2 -->
-                <div class="card overflow-hidden" data-aos="fade-up" data-aos-delay="200">
-                    <img src="https://placehold.co/600x400/1f2937/a78bfa?text=News" alt="Article Image" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <span class="text-xs font-semibold text-violet-400">ข่าวสาร</span>
-                        <h3 class="text-lg md:text-xl font-bold text-white mt-2 mb-3">Intel Core Ultra Series 2: แรงขึ้น ประหยัดไฟกว่าเดิม</h3>
-                        <p class="text-gray-400 text-sm">สรุปข้อมูลหลุดและสเปคที่คาดว่าจะมาใน CPU Gen ใหม่จาก Intel ที่เน้นเรื่อง AI เป็นพิเศษ</p>
-                        <a href="#" class="inline-block mt-4 text-violet-400 font-semibold hover:text-violet-300">อ่านต่อ &rarr;</a>
-                    </div>
-                </div>
-                <!-- Article 3 -->
-                <div class="card overflow-hidden" data-aos="fade-up" data-aos-delay="300">
-                    <img src="https://placehold.co/600x400/1f2937/f59e0b?text=Tips" alt="Article Image" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <span class="text-xs font-semibold text-amber-400">ทิปส์</span>
-                        <h3 class="text-lg md:text-xl font-bold text-white mt-2 mb-3">5 วิธีจัดโต๊ะคอมอย่างไรให้ productive ตลอดวัน</h3>
-                        <p class="text-gray-400 text-sm">แชร์ไอเดียการจัดโต๊ะคอมพิวเตอร์ให้ถูกหลัก Ergonomics และสวยงาม ช่วยเพิ่มประสิทธิภาพในการเรียน</p>
-                        <a href="#" class="inline-block mt-4 text-amber-400 font-semibold hover:text-amber-300">อ่านต่อ &rarr;</a>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <!-- E-Book Section -->
         <section id="ebook" class="my-16 py-16" data-aos="zoom-in">
@@ -309,7 +294,7 @@
                     <h2 class="text-3xl font-bold text-white">คู่มือการเลือกซื้อ (E-book)</h2>
                     <p class="text-gray-400 mt-2">สำหรับผู้ที่สนใจเนื้อหาโดยละเอียด สามารถดาวน์โหลดคู่มือฉบับเต็มได้ฟรี!</p>
                 </div>
-                <a href="#" class="gemini-button text-white font-bold py-3 px-6 rounded-lg text-lg whitespace-nowrap">
+                <a href="#" class="gemini-button text-white font-bold py-3 px-6 rounded-lg text-lg whitespace-nowT">
                     ดาวน์โหลดเลย
                 </a>
              </div>
@@ -346,229 +331,351 @@
         </footer>
 
     </div>
+
+    <!-- Dev Key modal + floating button (สำหรับโหมด Dev) -->
+    <button id="dev-key-btn" title="ตั้งค่า Dev API Key" class="fixed bottom-6 right-6 z-50 bg-gray-800 text-white p-3 rounded-full shadow-lg hover:bg-gray-700 focus:outline-none">
+        ⚙️
+    </button>
+
+    <div id="dev-key-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50">
+        <div class="bg-gray-900 border border-gray-700 rounded-lg p-6 max-w-lg w-full mx-4">
+            <h3 class="text-lg font-bold text-white mb-3">ตั้งค่า DEV API Key (เฉพาะตอนทดสอบ)</h3>
+            <p class="text-sm text-gray-400 mb-4">เก็บคีย์ไว้ใน localStorage ของเบราว์เซอร์เท่านั้น</p>
+            <input id="dev-key-input" class="w-full p-3 bg-gray-800 border border-gray-600 rounded mb-4 text-sm text-gray-200" placeholder="วาง API Key ที่นี่" />
+            <div class="flex gap-3 justify-end">
+                <button id="dev-key-clear" class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-500">ล้าง</button>
+                <button id="dev-key-save" class="px-4 py-2 bg-cyan-500 text-white rounded hover:bg-cyan-400">บันทึก</button>
+                <button id="dev-key-close" class="px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-600">ปิด</button>
+            </div>
+            <p id="dev-key-note" class="text-xs text-gray-500 mt-3"></p>
+        </div>
+    </div>
     
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({
-            duration: 800,
-            once: true,
-        });
-
-        // --- Mobile Menu Toggle ---
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
+        // รอให้ทุกอย่างในหน้าเว็บโหลดเสร็จเรียบร้อยก่อนนะ แล้วค่อยสั่งให้นักแสดงออกมา
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 800,
+                once: true,
             });
-        });
 
-
-        // DOM Elements
-        const getRecommendationBtn = document.getElementById('get-recommendation-btn');
-        const userPromptEl = document.getElementById('user-prompt');
-        const aiResultContainer = document.getElementById('ai-result-container');
-        const loadingContainer = document.getElementById('loading-container');
-        const aiResultEl = document.getElementById('ai-result');
-        let currentRecommendationText = '';
-
-        // --- DEVELOPMENT/TESTING MODE ---
-        // For local testing, paste your API key here.
-        // For production on Netlify, this key is NOT used. The key from Netlify's environment variables is used instead.
-        const DEV_API_KEY = 'ใส่ API Key ของเธอตรงนี้เพื่อทดสอบ';
-        
-        // --- Formatting Functions ---
-        function formatAiResponse(text) {
-            const priceTableSplit = text.split(/#+\s*ตารางราคาโดยประมาณ/);
-            const recommendationPart = priceTableSplit[0];
-            const priceTablePart = priceTableSplit.length > 1 ? priceTableSplit[1] : '';
-
-            let finalHtml = '';
-
-            // Part 1: Format Recommendation
-            if (recommendationPart && recommendationPart.trim()) {
-                const summarySplit = recommendationPart.split(/#+\s*สรุปภาพรวม/);
-                let mainContent = summarySplit[0];
-                let summaryContent = summarySplit.length > 1 ? summarySplit[1] : '';
-                let recHtml = '<div class="space-y-4">';
-                const blocks = mainContent.split(/(?=^#+\s*\d*\.?\s*)/m).filter(b => b.trim() !== '');
-                blocks.forEach(block => {
-                    const lines = block.trim().split('\n');
-                    const titleLine = lines[0];
-                    const reasonLine = lines.length > 1 ? lines.slice(1).join('\n') : '';
-                    const title = titleLine.replace(/^#+\s*\d*\.?\s*/, '').trim();
-                    const [part, spec] = title.split(/:(.*)/s); 
-                    recHtml += `<div class="p-4 bg-gray-800 rounded-lg border border-gray-700">`;
-                    if (spec) recHtml += `<h4 class="text-lg font-bold text-cyan-400">${part.trim()}: <span class="text-white font-medium">${spec.trim()}</span></h4>`;
-                    else recHtml += `<h4 class="text-lg font-bold text-cyan-400">${part.trim()}</h4>`;
-                    if (reasonLine) {
-                        const reason = reasonLine.replace(/\*\*(.*?):\*\*/, '<strong class="font-semibold text-gray-200">$1:</strong>');
-                        recHtml += `<p class="text-gray-300 mt-2">${reason.trim()}</p>`;
-                    }
-                    recHtml += `</div>`;
+            // --- Mobile Menu Toggle ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
                 });
-                recHtml += `</div>`;
 
-                if (summaryContent.trim()) {
-                    const summaryLines = summaryContent.trim().split('\n').filter(line => line.trim() !== '');
-                    let summaryHtml = `<div class="mt-6 p-5 bg-gradient-to-br from-gray-800 to-gray-900 border-l-4 border-violet-500 rounded-r-lg shadow-lg"><h4 class="text-xl font-bold text-violet-400 mb-3">สรุปภาพรวม</h4>`;
-                    let listItems = '';
-                    summaryLines.forEach(line => {
-                        line = line.trim();
-                        if (line.match(/^\d+\.\s*/)) {
-                            let item = line.replace(/^\d+\.\s*/, '').replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-white">$1</strong>');
-                            listItems += `<li class="flex items-start mb-2"><svg class="w-5 h-5 text-violet-400 mr-2 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg><span>${item}</span></li>`;
-                        } else if (line) summaryHtml += `<p class="text-gray-300 mb-4">${line}</p>`;
+                document.querySelectorAll('#mobile-menu a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('hidden');
                     });
-                    if (listItems) summaryHtml += `<ul class="space-y-1">${listItems}</ul>`;
-                    summaryHtml += `</div>`;
-                    recHtml += summaryHtml;
-                }
-                finalHtml += recHtml;
+                });
             }
 
-            // Part 2: Format Price Table
-            if (priceTablePart && priceTablePart.trim()) {
-                finalHtml += '<h4 class="text-xl font-bold text-white mt-8 mb-4">ตารางราคาโดยประมาณ:</h4>';
 
-                const tableRows = priceTablePart.split('\n').filter(line => {
-                    const trimmedLine = line.trim();
-                    return trimmedLine.startsWith('|') && !trimmedLine.toLowerCase().includes('ส่วนประกอบ') && !trimmedLine.match(/\|?\s*:?-+:?\s*\|/);
-                });
+            // DOM Elements
+            const getRecommendationBtn = document.getElementById('get-recommendation-btn');
+            const userPromptEl = document.getElementById('user-prompt');
+            const aiResultContainer = document.getElementById('ai-result-container');
+            const loadingContainer = document.getElementById('loading-container');
+            const aiResultEl = document.getElementById('ai-result');
+            let currentRecommendationText = '';
 
-                if (tableRows.length > 0) {
-                     let tableHtml = `<div class="overflow-x-auto rounded-lg border border-gray-700">
-                        <table class="w-full text-left">
-                            <thead class="bg-gray-800 text-sm text-gray-300 uppercase">
-                                <tr>
-                                    <th class="p-4 font-medium">ส่วนประกอบ</th>
-                                    <th class="p-4 font-medium">สเปค</th>
-                                    <th class="p-4 font-medium text-right">ราคาประมาณ (บาท)</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-gray-700">`;
-                    
-                    let totalRowHtml = '';
+            // --- Formatting Functions ---
+            function formatAiResponse(text) {
+                try {
+                    const priceTableSplit = text.split(/#+\s*ตารางราคาโดยประมาณ/);
+                    const recommendationPart = priceTableSplit[0];
+                    const priceTablePart = priceTableSplit.length > 1 ? priceTableSplit[1] : '';
 
-                    tableRows.forEach(row => {
-                        const columns = row.split('|').slice(1, -1).map(c => c.trim());
+                    let finalHtml = '';
 
-                        if (columns.length > 0 && columns[0].includes('ราคารวม')) {
-                            const priceColumn = [...columns].reverse().find(c => c.length > 0) || '-';
-                            totalRowHtml = `<tr class="bg-gray-800 font-bold">
-                                            <td class="p-4 text-violet-400" colspan="2">${columns[0]}</td>
-                                            <td class="p-4 text-violet-400 text-right">${priceColumn.replace(/[\*:]/g, '').trim()}</td>
-                                        </tr>`;
-                        } else if (columns.length === 3) {
-                            const component = columns[0].replace(/[\*:]/g, '').trim();
-                            const spec = columns[1].replace(/[\*:]/g, '').trim();
-                            let priceText = columns[2].replace(/[\*:]/g, '').trim();
-                            
-                            let price = priceText;
-                            let priceNote = '';
-
-                            const noteMatch = priceText.match(/(.*?)\s*(\(.*\))/);
-                            if (noteMatch) {
-                                price = noteMatch[1].trim();
-                                priceNote = `<br><span class="text-xs text-gray-500 font-normal">${noteMatch[2]}</span>`;
+                    // Part 1: Format Recommendation
+                    if (recommendationPart && recommendationPart.trim()) {
+                        const summarySplit = recommendationPart.split(/#+\s*สรุปภาพรวม/);
+                        let mainContent = summarySplit[0];
+                        let summaryContent = summarySplit.length > 1 ? summarySplit[1] : '';
+                        let recHtml = '<div class="space-y-4">';
+                        const blocks = mainContent.split(/(?=^#+\s*\d*\.?\s*)/m).filter(b => b.trim() !== '');
+                        blocks.forEach(block => {
+                            const lines = block.trim().split('\n');
+                            const titleLine = lines[0];
+                            const reasonLine = lines.length > 1 ? lines.slice(1).join('\n') : '';
+                            const title = titleLine.replace(/^#+\s*\d*\.?\s*/, '').trim();
+                            const [part, spec] = title.split(/:(.*)/s); 
+                            recHtml += `<div class="p-4 bg-gray-800 rounded-lg border border-gray-700">`;
+                            if (spec) recHtml += `<h4 class="text-lg font-bold text-cyan-400">${part.trim()}: <span class="text-white font-medium">${spec.trim()}</span></h4>`;
+                            else recHtml += `<h4 class="text-lg font-bold text-cyan-400">${part.trim()}</h4>`;
+                            if (reasonLine) {
+                                const reason = reasonLine.replace(/\*\*(.*?):\*\*/, '<strong class="font-semibold text-gray-200">$1:</strong>');
+                                recHtml += `<p class="text-gray-300 mt-2">${reason.trim()}</p>`;
                             }
+                            recHtml += `</div>`;
+                        });
+                        recHtml += `</div>`;
 
-                            tableHtml += `<tr class="bg-gray-900 hover:bg-gray-800">
-                                        <td class="p-4 font-semibold text-cyan-400">${component}</td>
-                                        <td class="p-4 text-gray-300">${spec}</td>
-                                        <td class="p-4 font-semibold text-violet-400 text-right">${price}${priceNote}</td>
-                                    </tr>`;
+                        if (summaryContent.trim()) {
+                            const summaryLines = summaryContent.trim().split('\n').filter(line => line.trim() !== '');
+                            let summaryHtml = `<div class="mt-6 p-5 bg-gradient-to-br from-gray-800 to-gray-900 border-l-4 border-violet-500 rounded-r-lg shadow-lg"><h4 class="text-xl font-bold text-violet-400 mb-3">สรุปภาพรวม</h4>`;
+                            let listItems = '';
+                            summaryLines.forEach(line => {
+                                line = line.trim();
+                                if (line.match(/^\d+\.\s*/)) {
+                                    let item = line.replace(/^\d+\.\s*/, '').replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-white">$1</strong>');
+                                    listItems += `<li class="flex items-start mb-2"><svg class="w-5 h-5 text-violet-400 mr-2 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg><span>${item}</span></li>`;
+                                } else if (line) summaryHtml += `<p class="text-gray-300 mb-4">${line}</p>`;
+                            });
+                            if (listItems) summaryHtml += `<ul class="space-y-1">${listItems}</ul>`;
+                            summaryHtml += `</div>`;
+                            recHtml += summaryHtml;
                         }
+                        finalHtml += recHtml;
+                    }
+
+                    // Part 2: Format Price Table
+                    if (priceTablePart && priceTablePart.trim()) {
+                        finalHtml += '<h4 class="text-xl font-bold text-white mt-8 mb-4">ตารางราคาโดยประมาณ:</h4>';
+
+                        const tableRows = priceTablePart.split('\n').filter(line => {
+                            const trimmedLine = line.trim();
+                            return trimmedLine.startsWith('|') && !trimmedLine.toLowerCase().includes('ส่วนประกอบ') && !trimmedLine.match(/\|?\s*:?-+:?\s*\|/);
+                        });
+
+                        if (tableRows.length > 0) {
+                            let tableHtml = `<div class="overflow-x-auto rounded-lg border border-gray-700">
+                                <table class="w-full text-left">
+                                    <thead class="bg-gray-800 text-sm text-gray-300 uppercase">
+                                        <tr>
+                                            <th class="p-4 font-medium">ส่วนประกอบ</th>
+                                            <th class="p-4 font-medium">สเปค</th>
+                                            <th class="p-4 font-medium text-right">ราคาประมาณ (บาท)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-700">`;
+                            
+                            let totalRowHtml = '';
+                            let calculatedTotal = 0;
+
+                            tableRows.forEach(row => {
+                                const columns = row.split('|').slice(1).map(c => c.trim()).filter(c => c.length > 0);
+
+                                if (columns.length > 0 && columns[0].includes('ราคารวม')) {
+                                    // Ignore the total row from AI, we will calculate our own
+                                } else if (columns.length === 3) {
+                                    const component = columns[0].replace(/[\*:]/g, '').trim();
+                                    const spec = columns[1].replace(/[\*:]/g, '').trim();
+                                    let priceText = columns[2].replace(/[\*:]/g, '').trim();
+                                    let priceNum = parseInt(priceText.replace(/[^0-9]/g, ''), 10) || 0;
+                                    calculatedTotal += priceNum;
+                                    
+                                    let priceDisplay = priceText;
+                                    let priceNote = '';
+
+                                    const noteMatch = priceText.match(/(.*?)\s*(\(.*\))/);
+                                    if (noteMatch) {
+                                        priceDisplay = noteMatch[1].trim();
+                                        priceNote = `<br><span class="text-xs text-gray-500 font-normal">${noteMatch[2]}</span>`;
+                                    }
+
+                                    tableHtml += `<tr class="bg-gray-900 hover:bg-gray-800">
+                                                <td class="p-4 font-semibold text-cyan-400">${component}</td>
+                                                <td class="p-4 text-gray-300">${spec}</td>
+                                                <td class="p-4 font-semibold text-violet-400 text-right">${priceDisplay}${priceNote}</td>
+                                            </tr>`;
+                                }
+                            });
+                            
+                            // Add our calculated total row
+                             totalRowHtml = `<tr class="bg-gray-800 font-bold">
+                                            <td class="p-4 text-violet-400" colspan="2">ราคารวมโดยประมาณ</td>
+                                            <td class="p-4 text-violet-400 text-right">${calculatedTotal.toLocaleString('th-TH')} บาท</td>
+                                        </tr>`;
+
+                            tableHtml += '</tbody>' + totalRowHtml + '</table></div>';
+                            finalHtml += tableHtml;
+                        } else {
+                            finalHtml += '<p class="text-amber-400">ไม่สามารถหาราคาได้ในขณะนี้</p>';
+                        }
+                    }
+                    
+                    if (!finalHtml) {
+                        throw new Error("AI response was not in the expected format.");
+                    }
+
+                    return finalHtml;
+
+                } catch (e) {
+                    console.error("Error formatting AI response:", e);
+                    console.log("Raw problematic response text:", text);
+                    return '<p class="text-red-400">น้อง AI ตอบกลับมาในรูปแบบที่แปลกๆ ทำให้หน้านี้แสดงผลไม่ได้เลยจ้ะ 😭 ลองกดส่งคำขอใหม่อีกครั้งนะจ๊ะ!</p>';
+                }
+            }
+
+
+            // --- API Call Logic ---
+            async function callApi(endpoint, bodyPayload) {
+                const isProduction = window.location.hostname.includes('netlify.app');
+                let apiKey = '';
+
+                if (isProduction) {
+                    // Production Mode: Call Netlify Function
+                    const response = await fetch(endpoint, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(bodyPayload),
+                    });
+                    if (!response.ok) {
+                        const errorText = await response.text();
+                        console.error("Netlify Function Error:", errorText);
+                        throw new Error(`Server error: ${response.statusText}`);
+                    }
+                    return await response.json();
+                } else {
+                    // Development Mode: Call Gemini API directly
+                    apiKey = localStorage.getItem('pcforstudent_dev_api_key');
+                    if (!apiKey) {
+                        throw new Error('DEV_API_KEY_MISSING');
+                    }
+                    
+                    const directApiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+                    
+                    const recSystemPrompt = `คุณคือผู้เชี่ยวชาญการจัดสเปคคอมพิวเตอร์ในไทยที่รู้ข้อมูลล่าสุด (ต.ค. 2025) ภารกิจของคุณคือสร้างคำตอบที่สมบูรณ์แบบในครั้งเดียว **กฎสำคัญ:** 1. **วิเคราะห์คำขอ:** อ่านคำขอของผู้ใช้ (คณะ, โปรแกรม, งบ) ให้ละเอียด 2. **จัดสเปค:** * แนะนำสเปค PC ที่เหมาะสมที่สุด โดยอ้างอิงชิ้นส่วนที่มีอยู่จริงเท่านั้น (เช่น CPU Intel Core Ultra, GPU NVIDIA RTX 50 series) * จัดรูปแบบแต่ละชิ้นส่วนให้สวยงาม: * ขึ้นต้นด้วย \`###\` ตามด้วยเลขและชื่อ เช่น \`### 1. CPU: Intel Core Ultra 5\` * บรรทัดถัดไป อธิบายเหตุผล **แบบสั้นๆ กระชับที่สุด (ไม่เกิน 1-2 ประโยค)** ขึ้นต้นด้วย \`**เหตุผล:**\` * มีส่วนสรุปภาพรวมโดยใช้หัวข้อ \`## สรุปภาพรวม\` 3. **ค้นหาและสรุปราคา (สำคัญมาก):** * หลังจากจัดสเปคเสร็จ **ให้ใช้ Google Search ทันที** เพื่อค้นหาราคาโดยประมาณของชิ้นส่วน **ทุกชิ้น** จากร้านค้าในไทย (เช่น JIB, Advice) * สร้างตารางราคาในรูปแบบ Markdown โดยใช้หัวข้อ \`## ตารางราคาโดยประมาณ\` * ตารางต้องมีคอลัมน์ 'ส่วนประกอบ', 'สเปค', และ 'ราคาประมาณ (บาท)' * **ต้องมีแถวสุดท้ายสำหรับ 'ราคารวมโดยประมาณ'** โดยคำนวณจากผลรวมของราคาที่หาได้ 4. **ห้ามมั่ว:** หากหาราคาไม่ได้จริงๆ ให้ใส่ '-' แต่ต้องพยายามหาให้ได้มากที่สุด 5. **ภาษา:** ไทย, สุภาพ, เข้าใจง่าย`;
+
+                    const directPayload = {
+                        contents: [{ parts: [{ text: bodyPayload.userQuery }] }],
+                        tools: [{ "google_search": {} }],
+                        systemInstruction: { parts: [{ text: recSystemPrompt }] },
+                    };
+
+                    const response = await fetch(directApiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(directPayload)
                     });
 
-                    tableHtml += '</tbody>' + totalRowHtml + '</table></div>';
-                    finalHtml += tableHtml;
-                } else {
-                     finalHtml += '<p class="text-amber-400">ไม่สามารถหาราคาได้ในขณะนี้</p>';
+                    if (!response.ok) {
+                        const errorText = await response.text();
+                        console.error("Gemini API Error:", errorText);
+                        throw new Error(`Gemini API error: ${response.statusText}`);
+                    }
+                    const result = await response.json();
+                    
+                    if (!result.candidates || !result.candidates[0].content || !result.candidates[0].content.parts) {
+                        console.error("Invalid response structure from Gemini:", result);
+                        throw new Error("AI response structure was invalid.");
+                    }
+                    
+                    return { text: result.candidates[0].content.parts[0].text };
                 }
             }
 
-            return finalHtml;
-        }
 
+            // --- Event Handlers ---
+            if(getRecommendationBtn) {
+                getRecommendationBtn.addEventListener('click', async () => {
+                    const userQuery = userPromptEl.value.trim();
+                    if (!userQuery) {
+                        aiResultEl.innerHTML = '<p class="text-amber-400">กรุณาป้อนข้อมูลความต้องการของคุณก่อนครับ</p>';
+                        aiResultContainer.classList.remove('hidden');
+                        return;
+                    }
 
-        // --- API Call Logic ---
-        async function callApi(endpoint, bodyPayload) {
-            const isProduction = window.location.hostname.includes('netlify.app');
+                    aiResultContainer.classList.remove('hidden');
+                    loadingContainer.classList.remove('hidden');
+                    aiResultEl.innerHTML = '';
+                    getRecommendationBtn.disabled = true;
 
-            if (isProduction) {
-                // Production Mode: Call Netlify Function
-                const response = await fetch(endpoint, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(bodyPayload),
+                    try {
+                        const data = await callApi('/.netlify/functions/getAiRecommendation', { userQuery });
+                        aiResultEl.innerHTML = formatAiResponse(data.text);
+
+                    } catch (error) {
+                        console.error('Error getting recommendation:', error);
+                        if (error.message === 'DEV_API_KEY_MISSING') {
+                            aiResultEl.innerHTML = '<p class="text-amber-400">สำหรับโหมดทดสอบ, โปรดคลิกที่ปุ่ม ⚙️ มุมขวาล่างเพื่อใส่ API Key ของเธอ ก่อนนะจ๊ะ!</p>';
+                        } else {
+                            aiResultEl.innerHTML = '<p class="text-red-400">เกิดข้อผิดพลาดในการติดต่อ AI ค่ะ อาจเป็นเพราะมีผู้ใช้งานจำนวนมากในขณะนี้ ทำให้การตอบสนองล่าช้า ลองใหม่อีกครั้งในอีกสักครู่นะคะ</p>';
+                        }
+                    } finally {
+                        loadingContainer.classList.add('hidden');
+                        getRecommendationBtn.disabled = false;
+                    }
                 });
-                if (!response.ok) throw new Error(`Server error: ${response.statusText}`);
-                return await response.json();
-            } else {
-                // Development Mode: Call Gemini API directly
-                if (!DEV_API_KEY || DEV_API_KEY === 'ใส่ API Key ของเธอตรงนี้เพื่อทดสอบ') {
-                    throw new Error('DEV_API_KEY_MISSING');
+            }
+
+            // --- Dev Key Modal Logic ---
+            (function() {
+                const btn = document.getElementById('dev-key-btn');
+                const modal = document.getElementById('dev-key-modal');
+                const input = document.getElementById('dev-key-input');
+                const saveBtn = document.getElementById('dev-key-save');
+                const closeBtn = document.getElementById('dev-key-close');
+                const clearBtn = document.getElementById('dev-key-clear');
+                const note = document.getElementById('dev-key-note');
+                const storageKey = 'pcforstudent_dev_api_key';
+
+                if (!btn || !modal) {
+                     // ถ้าไม่มีปุ่ม dev key (เช่น อยู่บน Netlify) ก็ไม่ต้องทำอะไรเลย
+                     if(btn) btn.style.display = 'none';
+                    return;
                 }
-                
-                const directApiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${DEV_API_KEY}`;
-                
-                const recSystemPrompt = `คุณคือผู้เชี่ยวชาญการจัดสเปคคอมพิวเตอร์ในไทยที่รู้ข้อมูลล่าสุด (ต.ค. 2025) ภารกิจของคุณคือสร้างคำตอบที่สมบูรณ์แบบในครั้งเดียว **กฎสำคัญ:** 1. **วิเคราะห์คำขอ:** อ่านคำขอของผู้ใช้ (คณะ, โปรแกรม, งบ) ให้ละเอียด 2. **จัดสเปค:** * แนะนำสเปค PC ที่เหมาะสมที่สุด โดยอ้างอิงชิ้นส่วนที่มีอยู่จริงเท่านั้น (เช่น CPU Intel Core Ultra, GPU NVIDIA RTX 50 series) * จัดรูปแบบแต่ละชิ้นส่วนให้สวยงาม: * ขึ้นต้นด้วย \`###\` ตามด้วยเลขและชื่อ เช่น \`### 1. CPU: Intel Core Ultra 5\` * บรรทัดถัดไป อธิบายเหตุผล **แบบสั้นๆ กระชับที่สุด (ไม่เกิน 1-2 ประโยค)** ขึ้นต้นด้วย \`**เหตุผล:**\` * มีส่วนสรุปภาพรวมโดยใช้หัวข้อ \`## สรุปภาพรวม\` 3. **ค้นหาและสรุปราคา (สำคัญมาก):** * หลังจากจัดสเปคเสร็จ **ให้ใช้ Google Search ทันที** เพื่อค้นหาราคาโดยประมาณของชิ้นส่วน **ทุกชิ้น** จากร้านค้าในไทย (เช่น JIB, Advice) * สร้างตารางราคาในรูปแบบ Markdown โดยใช้หัวข้อ \`## ตารางราคาโดยประมาณ\` * ตารางต้องมีคอลัมน์ 'ส่วนประกอบ', 'สเปค', และ 'ราคาประมาณ (บาท)' * **ต้องมีแถวสุดท้ายสำหรับ 'ราคารวมโดยประมาณ'** โดยคำนวณจากผลรวมของราคาที่หาได้ 4. **ห้ามมั่ว:** หากหาราคาไม่ได้จริงๆ ให้ใส่ '-' แต่ต้องพยายามหาให้ได้มากที่สุด 5. **ภาษา:** ไทย, สุภาพ, เข้าใจง่าย`;
 
-                const directPayload = {
-                    contents: [{ parts: [{ text: bodyPayload.userQuery }] }],
-                    tools: [{ "google_search": {} }],
-                    systemInstruction: { parts: [{ text: recSystemPrompt }] },
-                };
+                if (window.location.hostname.includes('netlify.app')) {
+                    btn.style.display = 'none';
+                    modal.style.display = 'none';
+                    return;
+                }
 
-                const response = await fetch(directApiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(directPayload)
+                let currentKey = localStorage.getItem(storageKey) || '';
+
+                function updateNote() {
+                    if (note) note.textContent = currentKey ? 'คีย์ถูกตั้งค่าไว้แล้ว (ซ่อนอยู่)' : 'ยังไม่มีการตั้งค่าคีย์';
+                }
+
+                btn.addEventListener('click', () => {
+                    input.value = '';
+                    updateNote();
+                    modal.classList.remove('hidden');
+                    modal.classList.add('flex');
                 });
 
-                if (!response.ok) throw new Error(`Gemini API error: ${response.statusText}`);
-                const result = await response.json();
-                return { text: result.candidates?.[0]?.content?.parts?.[0]?.text };
-            }
-        }
+                closeBtn.addEventListener('click', () => {
+                    modal.classList.add('hidden');
+                    modal.classList.remove('flex');
+                });
 
+                clearBtn.addEventListener('click', () => {
+                    localStorage.removeItem(storageKey);
+                    currentKey = '';
+                    input.value = '';
+                    updateNote();
+                });
 
-        // --- Event Handlers ---
-        getRecommendationBtn.addEventListener('click', async () => {
-            const userQuery = userPromptEl.value.trim();
-            if (!userQuery) {
-                aiResultEl.innerHTML = '<p class="text-amber-400">กรุณาป้อนข้อมูลความต้องการของคุณก่อนครับ</p>';
-                aiResultContainer.classList.remove('hidden');
-                return;
-            }
+                saveBtn.addEventListener('click', () => {
+                    const newKey = input.value.trim();
+                    if (newKey && !newKey.includes('•')) {
+                        localStorage.setItem(storageKey, newKey);
+                        currentKey = newKey;
+                        note.textContent = 'บันทึกคีย์เรียบร้อย!';
+                    } else if (currentKey) {
+                        note.textContent = 'ใช้คีย์เดิม (ไม่ได้เปลี่ยน)';
+                    } else {
+                        note.textContent = 'โปรดใส่คีย์ก่อนบันทึก';
+                    }
+                    input.value = '';
+                });
 
-            aiResultContainer.classList.remove('hidden');
-            loadingContainer.classList.remove('hidden');
-            aiResultEl.innerHTML = '';
-            getRecommendationBtn.disabled = true;
-
-            try {
-                const data = await callApi('/.netlify/functions/getAiRecommendation', { userQuery });
-                aiResultEl.innerHTML = formatAiResponse(data.text);
-
-            } catch (error) {
-                console.error('Error getting recommendation:', error);
-                if (error.message === 'DEV_API_KEY_MISSING') {
-                     aiResultEl.innerHTML = '<p class="text-amber-400">สำหรับโหมดทดสอบ, โปรดใส่ API Key ของเธอในไฟล์ index.html ก่อนนะจ๊ะ (ดูคอมเมนต์ในโค้ดได้เลยจ้ะ)</p>';
-                } else {
-                    aiResultEl.innerHTML = '<p class="text-red-400">เกิดข้อผิดพลาดในการติดต่อ AI ค่ะ อาจเป็นเพราะมีผู้ใช้งานจำนวนมากในขณะนี้ ทำให้การตอบสนองล่าช้า ลองใหม่อีกครั้งในอีกสักครู่นะคะ</p>';
-                }
-            } finally {
-                loadingContainer.classList.add('hidden');
-                getRecommendationBtn.disabled = false;
-            }
-        });
-
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        closeBtn.click();
+                    }
+                });
+            })();
+            
+        }); // <-- ปิด DOMContentLoaded
     </script>
 </body>
 </html>
