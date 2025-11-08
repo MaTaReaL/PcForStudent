@@ -73,9 +73,10 @@
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex space-x-6 items-center">
                     <a href="#gemini-advisor" class="nav-link text-gray-300 font-medium">AI แนะนำสเปค</a>
+                    <a href="#video-guide" class="nav-link text-gray-300 font-medium">วิดีโอ</a>
                     <a href="#general-info" class="nav-link text-gray-300 font-medium">ตัวอย่างสเปค</a>
-                    <a href="#knowledge" class="nav-link text-gray-300 font-medium">เกร็ดความรู้</a>
-                    <a href="#ebook" class="nav-link text-gray-300 font-medium">E-Book</a>
+                    <a href="#knowledge" class="nav-link text-gray-300 font-medium">ข้อมูลเทคนิค</a>
+                    <a href="#ebook" class="nav-link text-gray-300 font-medium">คู่มือ</a>
                     <a href="#contact" class="nav-link text-gray-300 font-medium">ติดต่อเรา</a>
                 </div>
 
@@ -90,9 +91,10 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="md:hidden hidden bg-gray-900">
             <a href="#gemini-advisor" class="block py-2 px-4 text-sm hover:bg-gray-800">AI แนะนำสเปค</a>
+            <a href="#video-guide" class="block py-2 px-4 text-sm hover:bg-gray-800">วิดีโอ</a>
             <a href="#general-info" class="block py-2 px-4 text-sm hover:bg-gray-800">ตัวอย่างสเปค</a>
-            <a href="#knowledge" class="block py-2 px-4 text-sm hover:bg-gray-800">เกร็ดความรู้</a>
-            <a href="#ebook" class="block py-2 px-4 text-sm hover:bg-gray-800">E-Book</a>
+            <a href="#knowledge" class="block py-2 px-4 text-sm hover:bg-gray-800">ข้อมูลเทคนิค</a>
+            <a href="#ebook" class="block py-2 px-4 text-sm hover:bg-gray-800">คู่มือ</a>
             <a href="#contact" class="block py-2 px-4 text-sm hover:bg-gray-800">ติดต่อเรา</a>
         </div>
     </nav>
@@ -101,10 +103,13 @@
     <!-- Main Container -->
     <div class="container mx-auto p-4 md:p-8 max-w-6xl">
 
-        <!-- Header -->
-        <header class="text-center my-10" data-aos="fade-down">
-            <h1 class="text-4xl md:text-5xl font-bold mb-2 gradient-text">การเลือกคอมพิวเตอร์ PC สำหรับนักศึกษา</h1>
-            <p class="text-lg text-gray-400">เลือกคอมพิวเตอร์ที่ใช่ ให้การเรียนเป็นเรื่องง่าย</p>
+        <!-- ===== NEW Hero Section ===== -->
+        <header class="text-center py-24 md:py-32" data-aos="fade-down">
+            <h1 class="text-5xl md:text-7xl font-bold mb-4 gradient-text">การเลือกคอมพิวเตอร์ PC <br class="hidden md:block"> สำหรับนักศึกษา</h1>
+            <p class="text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto mb-8">ค้นหาสเปคที่ใช่ ตอบโจทย์ทุกคณะ ด้วย AI ผู้ช่วยอัจฉริยะของเรา</p>
+            <a href="#gemini-advisor" class="gemini-button text-white font-bold py-3 px-8 rounded-lg text-lg">
+                เริ่มต้นใช้งาน AI
+            </a>
         </header>
 
         <!-- Gemini AI Advisor Section -->
@@ -113,14 +118,7 @@
                 
                 <!-- AI Image -->
                 <div class="md:col-span-2" data-aos="fade-right">
-                    <!-- นี่คือจุดที่เธอจะใส่รูปเองนะจ๊ะ! -->
                     <img id="ai-builder-img-display" src="./images/ai-builder-image.jpg" alt="AI PC Builder Illustration" class="rounded-lg shadow-2xl w-full h-auto object-cover aspect-square">
-                    <!-- 
-                        คำแนะนำจากเค้า:
-                        1. สร้างโฟลเดอร์ 'images' ในโปรเจกต์ของเธอ
-                        2. เอารูปสวยๆ ไปใส่ (เช่น 'ai-pic.png')
-                        3. แก้โค้ดด้านบน src="./images/ai-builder-image.jpg" เป็น src="./images/ai-pic.png"
-                    -->
                 </div>
 
                 <!-- AI Card -->
@@ -154,6 +152,25 @@
             </div>
         </section>
 
+        <!-- ===== Video Section ===== -->
+        <section id="video-guide" class="my-16 py-16">
+            <h2 class="text-3xl font-bold text-center mb-8 gradient-text" data-aos="fade-up">นักศึกษาซื้อคอมพิวเตอร์อย่างไรให้คุ้มในปี 2026</h2>
+            <div class="card p-4 rounded-lg shadow-2xl max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                <!-- 
+                    คำแนะนำจากเค้า:
+                    เธอสามารถเปลี่ยนลิงก์ YouTube ตรง src="..." ให้เป็นวิดีโอที่เธอต้องการได้เลยนะจ๊ะ!
+                -->
+                <iframe class="w-full aspect-video rounded-lg" 
+                        src="https://www.youtube.com/embed/Km4psMnbKrc?si=Nqi3GZ2Z3tHP5qIR" 
+                        title="YouTube video player" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                </iframe>
+            </div>
+        </section>
+
+
         <!-- General Info Section Anchor -->
         <div id="general-info" class="pt-16 -mt-16"></div> 
         
@@ -163,7 +180,6 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
                 
                 <div class="card rounded-lg flex flex-col overflow-hidden" data-aos="fade-up" data-aos-delay="100">
-                    <!-- จุดที่ 2 ให้เธอใส่รูปสำหรับ 'สายภาษา' จ้ะ -->
                     <img src="./images/spec-general.jpg" alt="General Use PC" class="w-full h-48 object-cover">
                     <div class="p-6 flex flex-col flex-grow">
                         <h3 class="text-xl md:text-2xl font-bold text-white mb-3">💻 ใช้งานทั่วไปและสายภาษา</h3>
@@ -185,7 +201,6 @@
                 </div>
 
                 <div class="card rounded-lg flex flex-col overflow-hidden" data-aos="fade-up" data-aos-delay="200">
-                    <!-- จุดที่ 3 ให้เธอใส่รูปสำหรับ 'วิศวะ' จ้ะ -->
                     <img src="./images/spec-programming.jpg" alt="Programming PC" class="w-full h-48 object-cover">
                     <div class="p-6 flex flex-col flex-grow">
                         <h3 class="text-xl md:text-2xl font-bold text-white mb-3">🔧 โปรแกรมเมอร์และวิศวะ</h3>
@@ -207,7 +222,6 @@
                 </div>
 
                 <div class="card rounded-lg flex flex-col overflow-hidden" data-aos="fade-up" data-aos-delay="300">
-                    <!-- จุดที่ 4 ให้เธอใส่รูปสำหรับ 'กราฟิก' จ้ะ -->
                     <img src="./images/spec-graphics.jpg" alt="Graphics PC" class="w-full h-48 object-cover">
                     <div class="p-6 flex flex-col flex-grow">
                         <h3 class="text-xl md:text-2xl font-bold text-white mb-3">🎨 กราฟิก, สื่อ และออกแบบ</h3>
@@ -233,70 +247,29 @@
 
         <!-- Knowledge Section -->
         <section id="knowledge" class="my-16 py-16">
-            <h2 class="text-3xl font-bold text-center mb-8 gradient-text" data-aos="fade-up">เกร็ดความรู้เพิ่มเติม</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                <!-- Tip 1 -->
-                <div class="card p-6" data-aos="fade-up" data-aos-delay="100">
-                    <div class="flex items-center">
-                        <div class="p-3 rounded-full bg-cyan-900/50 mr-4">
-                            <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 16v-2m0-10v2m0 6v2M6 12H4m16 0h-2m-10 0h2m6 0h2M9 18l-2-2m10-10l-2-2m0 12l2-2m-10 0l2 2"></path></svg>
-                        </div>
-                        <div>
-                            <h3 class="text-lg md:text-xl font-bold text-white">อุปกรณ์ต่อพ่วงก็สำคัญ</h3>
-                            <p class="text-gray-400">อย่าลืมเผื่องบสำหรับ เมาส์, คีย์บอร์ด, และจอภาพคุณภาพดี เพราะเป็นสิ่งที่เราต้องใช้งานตลอดเวลา</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Tip 2 -->
-                <div class="card p-6" data-aos="fade-up" data-aos-delay="200">
-                    <div class="flex items-center">
-                        <div class="p-3 rounded-full bg-violet-900/50 mr-4">
-                            <svg class="w-6 h-6 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        </div>
-                        <div>
-                            <h3 class="text-lg md:text-xl font-bold text-white">จัดโต๊ะคอมให้ถูกหลัก</h3>
-                            <p class="text-gray-400">การจัดวางจอและเก้าอี้ให้เหมาะสม (Ergonomics) จะช่วยลดอาการปวดเมื่อยจากการนั่งทำงานนานๆ</p>
-
-                        </div>
-                    </div>
-                </div>
-                <!-- Tip 3 -->
-                <div class="card p-6" data-aos="fade-up" data-aos-delay="300">
-                    <div class="flex items-center">
-                        <div class="p-3 rounded-full bg-amber-900/50 mr-4">
-                           <svg class="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v.01"></path></svg>
-                        </div>
-                        <div>
-                            <h3 class="text-lg md:text-xl font-bold text-white">ใช้สิทธิ์นักศึกษาให้คุ้ม</h3>
-                            <p class="text-gray-400">ซอฟต์แวร์หลายอย่าง เช่น Windows หรือ Adobe CC มีส่วนลดพิเศษหรือให้ใช้ฟรีสำหรับนักศึกษา</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Tip 4 -->
-                <div class="card p-6" data-aos="fade-up" data-aos-delay="400">
-                    <div class="flex items-center">
-                        <div class="p-3 rounded-full bg-emerald-900/50 mr-4">
-                            <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                        </div>
-                        <div>
-                            <h3 class="text-lg md:text-xl font-bold text-white">การรับประกัน</h3>
-                            <p class="text-gray-400">ตรวจสอบเงื่อนไขการรับประกันของชิ้นส่วนต่างๆ โดยเฉพาะ CPU, Mainboard และ PSU ควรมีการรับประกันอย่างน้อย 3 ปี</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!-- ... (เนื้อหาในส่วน Knowledge Section) ... -->
         </section>
-
-        <!-- E-Book Section -->
+        
+        <!-- ===== NEW PDF E-Book Section ===== -->
         <section id="ebook" class="my-16 py-16" data-aos="zoom-in">
              <div class="card p-8 rounded-lg flex flex-col md:flex-row items-center justify-between">
                 <div class="text-center md:text-left mb-6 md:mb-0">
-                    <h2 class="text-3xl font-bold text-white">คู่มือการเลือกซื้อ (E-book)</h2>
-                    <p class="text-gray-400 mt-2">สำหรับผู้ที่สนใจเนื้อหาโดยละเอียด สามารถดาวน์โหลดคู่มือฉบับเต็มได้ฟรี!</p>
+                    <h2 class="text-3xl font-bold text-white">คู่มือการเลือกซื้อ</h2>
+                    <p class="text-gray-400 mt-2">สำหรับผู้ที่สนใจเนื้อหาโดยละเอียด สามารถเปิดอ่านหรือดาวน์โหลดได้เลย!</p>
                 </div>
-                <a href="#" class="gemini-button text-white font-bold py-3 px-6 rounded-lg text-lg whitespace-nowT">
-                    ดาวน์โหลดเลย
-                </a>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <!-- 
+                        คำแนะนำจากเค้า:
+                        ให้เธอเอาไฟล์ PDF (เช่น student-guide.pdf) ไปวางไว้ในโฟลเดอร์หลัก
+                        (ที่เดียวกับ index.html) แล้วลิงก์ก็จะทำงานเลยจ้ะ!
+                    -->
+                    <a href="./student-guide.pdf" target="_blank" rel="noopener noreferrer" class="gemini-button text-white font-bold py-3 px-6 rounded-lg text-lg whitespace-nowrap text-center">
+                        📖 เปิดอ่านเลย
+                    </a>
+                    <a href="./student-guide.pdf" download="คู่มือเลือกซื้อคอม.pdf" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg text-lg whitespace-nowrap text-center transition-colors">
+                        📥 ดาวน์โหลด
+                    </a>
+                </div>
              </div>
         </section>
         
@@ -353,7 +326,6 @@
     
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // รอให้ทุกอย่างในหน้าเว็บโหลดเสร็จเรียบร้อยก่อนนะ แล้วค่อยสั่งให้นักแสดงออกมา
         document.addEventListener('DOMContentLoaded', function() {
             AOS.init({
                 duration: 800,
@@ -617,9 +589,8 @@
                 const note = document.getElementById('dev-key-note');
                 const storageKey = 'pcforstudent_dev_api_key';
 
-                if (!btn || !modal) {
-                     // ถ้าไม่มีปุ่ม dev key (เช่น อยู่บน Netlify) ก็ไม่ต้องทำอะไรเลย
-                     if(btn) btn.style.display = 'none';
+                if (!btn || !modal || !input || !saveBtn || !closeBtn || !clearBtn || !note) {
+                    if(btn) btn.style.display = 'none';
                     return;
                 }
 
@@ -675,8 +646,7 @@
                 });
             })();
             
-        }); // <-- ปิด DOMContentLoaded
+        });
     </script>
 </body>
 </html>
-
